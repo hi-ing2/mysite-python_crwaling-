@@ -1,0 +1,15 @@
+{%load static%}
+
+<link rel='stylesheet' href='{% static "polls/style.css" %}'>
+
+{% for question in latest_question_list%}
+<!-- <a href='/polls/{{question.id}}'></a> -->
+    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+
+    
+    <!-- 'polls' appname의 'detail' name을 가리킴 -->
+{% endfor %}
+<form method="POST" action="{% url 'polls:detail'  %}">
+    <input type="text" name="qstname" value="{{ question.question_text }}">
+    <input type="submit" value="질문생성">
+</form>
